@@ -12,6 +12,7 @@ libc = "0.2"
 
 [build-dependencies]
 bindgen = "0.69"
+cc = "1.0"
 
 [lib]
 name = "makerom"
