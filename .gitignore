@@ -1,0 +1,27 @@
+# Rust
+/target/
+Cargo.lock
+**/*.rs.bk
+*.rlib
+*.rmeta
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Build artifacts
+/build/
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+
+# Generated files
+makerom-headers.h.bk
+bindings.rs

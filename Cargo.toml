@@ -1,0 +1,22 @@
+[package]
+name = "makerom-rs"
+version = "0.1.0"
+edition = "2021"
+authors = ["TurboToad12"]
+description = "Rust FFI bindings to the makerom utility for 3DS ROM creation"
+license = "MIT"
+repository = "https://github.com/TurboToad12/makerom-rs"
+
+[dependencies]
+libc = "0.2"
+
+[build-dependencies]
+bindgen = "0.69"
+
+[lib]
+name = "makerom"
+path = "src/lib.rs"
+
+[[example]]
+name = "basic_usage"
+path = "examples/basic_usage.rs"
