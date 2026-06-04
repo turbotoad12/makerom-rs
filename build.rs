@@ -62,15 +62,25 @@ fn main() {
     println!("cargo:rerun-if-changed=makerom-headers.h");
     println!("cargo:rerun-if-changed={}", makerom_src);
 
-    // Generate bindings
+    // Generate bindings with proper header search paths
     let mut builder = Builder::default();
+    
+    // Add include directories for bindgen
     builder = builder
         .header("makerom-headers.h")
+        .clang_arg("-Imakerom/src")
+        .clang_arg("-Imakerom/deps/libmbedtls/include")
+        .clang_arg("-Imakerom/deps/libblz/include")
+        .clang_arg("-Imakerom/deps/libyaml/include")
         .generate_inline_functions(true)
         .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()));
 
-    // Add clang arguments for Windows
+    // Add platform-specific defines for bindgen
     if target_os == "windows" {
+        builder = builder
+            .clang_arg("-D_WIN32")
+            .clang_arg("-D_GNU_SOURCE");
+    } else {
         builder = builder.clang_arg("-D_GNU_SOURCE");
     }
 
